@@ -1,12 +1,13 @@
-import java.util.*;
+import java.io.*;
 
 public class Main {
     static char star[][];
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        int n = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int n = Integer.parseInt(br.readLine());
+                
         n = 4 * n - 3; //가로 세로의 출력
         star = new char[n][n];
 
@@ -20,10 +21,12 @@ public class Main {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                System.out.print(star[i][j]);
+                bw.write(star[i][j]);
             }
-            System.out.println();
+            bw.write("\n");
         }
+        bw.flush();
+        bw.close();
     }
 
     public static void draw(int s, int len) {
