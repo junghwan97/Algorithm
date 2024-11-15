@@ -5,11 +5,14 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] arr = br.readLine().split(" ");
-        String n = br.readLine();
+        StringBuilder sb = new StringBuilder();
+
+        String[] numA = br.readLine().split(" ");
+        String numB = br.readLine();
         int count = 0;
-        for(int i = 0; i < arr.length; i++) {
-            if (arr[i].startsWith(n) && !arr[i].equals(n)) {
+
+        for (int i = 0; i < numA.length; i++) {
+            if (numA[i].startsWith(numB) && !numA[i].equals(numB)) {
                 count++;
             }
         }
