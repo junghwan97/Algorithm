@@ -7,7 +7,8 @@ public class Main {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int n = Integer.parseInt(br.readLine()); // 버튼을 누른 횟수
-        Deque<Character> deque = new LinkedList<>(); // 문자열 저장용 Deque
+//        Deque<Character> deque = new LinkedList<>(); // 문자열 저장용 Deque
+        Deque<Character> deque = new ArrayDeque<>(); // 문자열 저장용 Deque
         Deque<Boolean> addedStack = new ArrayDeque<>(); // 최근 추가된 블록 추적용 Deque
 
         for (int i = 0; i < n; i++) {
@@ -29,7 +30,6 @@ public class Main {
                 }
             }
         }
-
         // 최종 문자열 출력
         if (deque.isEmpty()) {
             bw.write("0");
