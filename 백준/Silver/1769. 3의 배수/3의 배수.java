@@ -10,8 +10,8 @@ public class Main {
         while (a.length() > 1) {
 
             int result = 0;
-            for (char s : a.toCharArray()) {
-                result += s - '0';
+            for (int i = 0; i < a.length(); i++) {
+                result += a.charAt(i) - '0';
             }
             a = String.valueOf(result);
             count++;
