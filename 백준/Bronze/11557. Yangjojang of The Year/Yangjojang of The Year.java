@@ -14,14 +14,15 @@ public class Main {
                 StringTokenizer st = new StringTokenizer(br.readLine());
                 school.add(new School(st.nextToken(), Integer.parseInt(st.nextToken())));
             }
-            school.sort(Comparator.comparingInt(School::getAlcohol).reversed());
+            school.sort(Comparator.comparing(School::getAlcohol).reversed());
             bw.write(school.get(0).name + "\n");
         }
         bw.flush();
         bw.close();
+
     }
 
-    static class School {
+    static class School  {
         String name;
         int alcohol;
 
