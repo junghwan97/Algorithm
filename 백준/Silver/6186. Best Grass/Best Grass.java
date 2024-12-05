@@ -27,7 +27,8 @@ public class Main {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 if (field[i][j] == '#' && !visited[i][j]) {
-                    bfs(i, j);
+                    dfs(i, j, field[i][j]);
+//                    bfs(i, j);
                     count++;
                 }
             }
@@ -38,27 +39,18 @@ public class Main {
         bw.close();
     }
 
-    static void bfs(int startX, int startY) {
-        Queue<int[]> queue = new ArrayDeque<>();
-        queue.add(new int[] {startX, startY});
-        visited[startX][startY] = true;
+    // DFS 함수
+    static void dfs(int r, int c, char type) {
+        if (r < 0 || c < 0 || r >= rows || c >= cols || field[r][c] != type || visited[r][c]) {
+            return;
+        }
 
-        while (!queue.isEmpty()) {
-            int[] current = queue.poll();
-            int x = current[0];
-            int y = current[1];
+        visited[r][c] = true; // 현재 위치 방문 처리
 
-            for (int i = 0; i < 4; i++) {
-                int nx = x + dx[i];
-                int ny = y + dy[i];
-
-                if (nx >= 0 && nx < rows && ny >= 0 && ny < cols) {
-                    if (field[nx][ny] == '#' && !visited[nx][ny]) {
-                        queue.add(new int[] {nx, ny});
-                        visited[nx][ny] = true;
-                    }
-                }
-            }
+        // 풀 더미 탐색
+        if (type == '#') {
+            dfs(r, c + 1, type); // 오른쪽으로만 탐색
+            dfs(r + 1, c, type); // 아래쪽으로만 탐색
         }
     }
 }
