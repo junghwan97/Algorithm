@@ -58,24 +58,25 @@ public class Main {
     }
 
     static int bfs(int start, int end) {
-        Queue<info> queue = new LinkedList<>();
+        Queue<int[]> queue = new LinkedList<>();
         visited[start] = true; // 여기서 1 -> a에 있는 value -> 2 니까 다 false처리를 해주는게
 
-//        int depth = 0;
-        queue.add(new info(start,0));
+        int depth = 0;
+        queue.add(new int[]{start,0});
         while (!queue.isEmpty()) {
-            info cur = queue.poll();
+            int[] qupo = queue.poll();
+            int currentA = qupo[0];
+            int currentB = qupo[1];
 
-
-            if (cur.index == end) {
-                answer = cur.count;
+            if (currentA == end) {
+                answer = currentB;
                break;
             }
 
-            for (int s : list.get(cur.index)) {
+            for (int s : list.get(currentA)) {
                 if (!visited[s]) { //
                     visited[s] = true;
-                    queue.add(new info(s, cur.count+1));
+                    queue.add(new int[]{s, currentB+1});
                 }
             }
 
