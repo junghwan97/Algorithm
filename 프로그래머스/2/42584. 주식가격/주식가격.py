@@ -1,16 +1,15 @@
-from collections import deque
-
 def solution(prices):
-    answer = []
-    prices = deque(prices)
-    
-    while prices:
-        price_not_fail_period = 0
-        current_price = prices.popleft()
-        for next_price in prices:
-            if current_price > next_price:
-                price_not_fail_period += 1
-                break
-            price_not_fail_period += 1
-        answer.append(price_not_fail_period)
+    answer = [0] * len(prices)  # 결과 리스트 초기화
+    stack = []  # 인덱스를 저장할 스택
+
+    for i, price in enumerate(prices):
+        while stack and prices[stack[-1]] > price:  # 가격이 떨어지면
+            j = stack.pop()
+            answer[j] = i - j  # 떨어지기 전까지 유지된 기간 계산
+        stack.append(i)
+
+    while stack:  # 끝까지 남아있는 인덱스 처리
+        j = stack.pop()
+        answer[j] = len(prices) - 1 - j
+
     return answer
